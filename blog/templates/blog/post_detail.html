@@ -13,6 +13,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://kit.fontawesome.com/86375b6558.css" crossorigin="anonymous">
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -34,7 +35,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <!-- Post content -->
+                    <!-- Post content column -->
                     <p class="col-lg-8">
                         <!-- title-->
                         <h1 class="mt-4">{{ post.title }}</h1>
@@ -56,9 +57,25 @@
                         <hr>
                         <!-- Post content-->
                         <p>{{ post.content }}</p>
+                        {% if post.file_upload %}
+                            <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button" download>
+                            Download</a>
+                            {% if post.get_file_ext == 'csv' %}
+                                <i class="fas fa-file-csv"></i>
+                            {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                <i class="fas fa-file-excel"></i>
+                            {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                <i class="fas fa-file-word"></i>
+                            {% else %}
+                                <i class="far fa-file"></i>
+                            {% endif %}
+
+                            {{ post.get_file_name }}
+
+                        {% endif %}
 
                         <hr>
-                    </div>
+                </div>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -162,5 +179,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/86375b6558.js" crossorigin="anonymous"></script>
     </body>
 </html>
