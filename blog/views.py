@@ -7,7 +7,7 @@ from django.views.generic import ListView, DetailView
 class PostList(ListView):
     model = Post
     ordering = '-pk'
-    template_name = 'blog/index.html'
+    template_name = 'blog/post_list.html'
 
 
 class PostDetail(DetailView):
@@ -18,7 +18,7 @@ class PostDetail(DetailView):
 #
 #     return render(
 #         request,
-#         'blog/index.html',
+#         'blog/post_list.html',
 #         {
 #             'posts': posts,
 #         }
