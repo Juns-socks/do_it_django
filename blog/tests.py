@@ -54,7 +54,7 @@ class TestView(TestCase):
         )
         self.assertEqual(post_001.get_absolute_url(), '/blog/1/')
 
-        response = self.client.get(self.post_001.get_absolute_url())
+        response = self.client.get(post_001.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
 
@@ -62,15 +62,15 @@ class TestView(TestCase):
         self.assertIn('Blog', navbar.text)
         self.assertIn('About Me', navbar.text)
 
-        self.assertIn(self.post_001.title, soup.title.text)
+        self.assertIn(post_001.title, soup.title.text)
 
         main_area = soup.find('div', id='main-area')
         post_area = main_area.find('div', id='post-area')
-        self.assertIn(self.post_001.title, post_area.text)
+        self.assertIn(post_001.title, post_area.text)
 
-        #2-6 댓글 작성자 예정
 
-        self.assertIn(self.post_001.content, post_area.text)
+
+        self.assertIn(post_001.content, post_area.text)
 
 
 
